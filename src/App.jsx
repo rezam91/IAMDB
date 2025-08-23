@@ -1,8 +1,23 @@
+import { Routes , Route } from "react-router-dom"
+import Head from './components/head'
+import Home from './pages/home'
+import Search from './pages/search'
+import Result from './pages/result'
+import NotFound from './pages/notfound'
+
 const App = () => {
 
   return (
     <>
-      <div>App</div>
+      <Head />
+      <div>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/search/' element={<Search />} />
+          <Route path='/result/' element={<Result />} />
+          <Route path='/*' element={<NotFound />} />
+        </Routes>
+      </div>
     </>
   )
 }
