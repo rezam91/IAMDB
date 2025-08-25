@@ -10,10 +10,11 @@ const App = () => {
   return (
     <>
       <Head />
-      <div>
+      <div className="mt-[50px] ml-auto mr-auto w-[920px] border border-white" >
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/search/' element={<Search />} />
+          <Route path="/search/:query/:page" element={<Search />} />
+          <Route path="/search/genre/:genre/:page" element={<Search />} />
           <Route path='/result/' element={<Result />} />
           <Route path='/*' element={<NotFound />} />
         </Routes>
