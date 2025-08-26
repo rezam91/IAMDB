@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import searchpath from '../assets/images/search 1.svg';
+import backSignPath from '../assets/images/angle-left 1.png' 
 import voicetotext from '../assets/images/microphone 1.svg';
 
 const Search = () => {
@@ -61,33 +62,41 @@ const Search = () => {
   };
 
   return (
-    <div className="p-4">
+    <>
       {/* Search Bar */}
+      <div className='border border-red-300 relative flex'>
+        <div className='p-[10px] w-fit bg-[#222C4F] rounded-full cursor-pointer'>
+          <img src={backSignPath} alt="" width='20px' />
+        </div>
+        <div className='border border-green-300 text-white grow flex flex-col'>
+          <span className='mx-auto p-0 border border-amber-300 text-[18px] leading-[0.9] font-[700]'>Result</span>
+          <span className='mx-auto opacity-[0.4] text-[12px] font-[300] '>for {query ? `"${query}"` : `"${genre}"`}</span>
+        </div>
+        <div className='w-[40px] h-[40px]'>
+        </div>
+      </div>
       <form
         onSubmit={handleSearch}
-        className="rounded-[16px] flex items-center bg-[#222C4F] px-4 py-2 gap-2 w-full mb-6"
+        className="rounded-[16px] flex items-center bg-[#222C4F] px-4 py-2 gap-2 w-full mb-6 opacity-[0.8] mt-[32px]"
       >
         <img src={searchpath} alt="search-icon" width="24px" />
         <input
           type="text"
           value={queryInput}
           onChange={(e) => setQueryInput(e.target.value)}
-          placeholder="Search movies..."
+          placeholder={query ? `${query}` : `${genre}`}
           className="bg-transparent text-white outline-none px-2 w-full"
         />
-        <img
-          src={voicetotext}
-          alt="microphone-icon"
-          width="24px"
-          onClick={handleVoiceInput}
-          className="cursor-pointer"
-        />
+        <div className='border-l-[2px] border-black pl-[4px]'>
+          <img
+            src={voicetotext}
+            alt="microphone-icon"
+            width="24px"
+            onClick={handleVoiceInput}
+            className="cursor-pointer"
+          />
+        </div>
       </form>
-
-      {/* Results Header */}
-      <h2 className="text-white text-xl mb-4">
-        Results for {query ? `"${query}"` : `"${genre}"`}
-      </h2>
 
       {/* Loading or No Results */}
       {loading ? (
@@ -125,7 +134,7 @@ const Search = () => {
           ))}
         </ul>
       )}
-    </div>
+    </>
   );
 };
 
