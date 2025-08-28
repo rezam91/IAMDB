@@ -1,7 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import heartIdle from '../assets/images/State=Idle.png'
+import heartHover from '../assets/images/State=Hover.png'
+import heartLiked from '../assets/images/State=Liked.png'
+import { useContext } from 'react';
+import { UserContext } from '../App';
 
 const Result = () => {
+  const { likedMovies, toggleLike } = useContext(UserContext);
   const [movie, setMovie] = useState(null);
   const location = useLocation();
   const params = new URLSearchParams(location.search);
@@ -107,7 +113,32 @@ const Result = () => {
 
         <div className="flex flex-col justify-between">
           <div>
-            <h1 className="text-3xl font-bold mb-2">{movie.title}</h1>
+            <div className='flex justify-between'>
+
+              <h1 className="text-3xl font-bold mb-2">{movie.title}</h1>
+              <div
+                className="relative w-[24px] h-[24px] cursor-pointer"
+                onClick={(e) => {
+                  e.stopPropagation(); // prevent accidental navigation
+                  toggleLike(movie.id);
+                }}
+                onMouseEnter={(e) => {
+                  const img = e.currentTarget.querySelector('img');
+                  if (!likedMovies.includes(movie.id)) img.src = heartHover;
+                }}
+                onMouseLeave={(e) => {
+                  const img = e.currentTarget.querySelector('img');
+                  if (!likedMovies.includes(movie.id)) img.src = heartIdle;
+                }}
+              >
+                <img
+                  src={likedMovies.includes(movie.id) ? heartLiked : heartIdle}
+                  alt="heart-icon"
+                  width="24px"
+                />
+              </div>
+
+            </div>
             <p className="text-gray-300 mb-1">{movie.genres?.join(', ')}</p>
             <p>{movie.plot}</p>
             <div>

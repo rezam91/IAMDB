@@ -3,8 +3,17 @@ import { useParams, useNavigate } from 'react-router-dom';
 import searchpath from '../assets/images/search 1.svg';
 import backSignPath from '../assets/images/angle-left 1.png' 
 import voicetotext from '../assets/images/microphone 1.svg';
+import starPath from '../assets/images/star 1.png'
+import heartIdle from '../assets/images/State=Idle.png'
+import heartHover from '../assets/images/State=Hover.png'
+import heartLiked from '../assets/images/State=Liked.png'
+import { useContext } from 'react';
+import { UserContext } from '../App';
+
+
 
 const Search = () => {
+  const { likedMovies, toggleLike } = useContext(UserContext);
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [queryInput, setQueryInput] = useState('');
@@ -64,12 +73,12 @@ const Search = () => {
   return (
     <>
       {/* Search Bar */}
-      <div className='border border-red-300 relative flex'>
-        <div className='p-[10px] w-fit bg-[#222C4F] rounded-full cursor-pointer'>
+      <div className='relative flex'>
+        <div onClick={() => navigate(-1)} className='p-[10px] w-fit bg-[#222C4F] rounded-full cursor-pointer'>
           <img src={backSignPath} alt="" width='20px' />
         </div>
-        <div className='border border-green-300 text-white grow flex flex-col'>
-          <span className='mx-auto p-0 border border-amber-300 text-[18px] leading-[0.9] font-[700]'>Result</span>
+        <div className='text-white grow flex flex-col'>
+          <span className='mx-auto p-0text-[18px] leading-[0.9] font-[700]'>Result</span>
           <span className='mx-auto opacity-[0.4] text-[12px] font-[300] '>for {query ? `"${query}"` : `"${genre}"`}</span>
         </div>
         <div className='w-[40px] h-[40px]'>
@@ -104,30 +113,58 @@ const Search = () => {
       ) : movies.length === 0 ? (
         <div className="text-white text-center text-lg font-semibold">No Result Found!</div>
       ) : (
-        <ul className="flex flex-col gap-6 list-none pl-0">
+        <ul className="flex flex-col gap-[20px] list-none pl-0">
           {movies.map((movie) => (
             <li
               key={movie.id}
               onClick={() => navigate(`/result?id=${movie.id}`)}
-              className="flex items-start gap-4 bg-[#1e293b] p-4 rounded-lg text-white cursor-pointer hover:bg-[#334155]"
+              className="border-b border-[#222C4F] mb-[20px] flex pb-[20px] gap-[20px] text-white cursor-pointer rounded-[18px]"
             >
               <img
                 src={movie.poster}
                 alt={movie.title}
-                className="w-[120px] h-[180px] object-cover rounded-md"
+                className="w-[137px] h-[137px] object-cover rounded-[18px]"
               />
               <div className="flex flex-col justify-between flex-1">
                 <div>
-                  <h3 className="text-xl font-bold mb-1">{movie.title}</h3>
-                  <p className="text-sm text-gray-300 mb-1">
+                  <div className='flex justify-between'>
+                    <h3 className="text-[28px] font-[700] mt-[10px] mb-0">{movie.title}</h3>
+                    <div
+                      className="relative w-[24px] h-[24px] cursor-pointer"
+                      onClick={(e) => {
+                        e.stopPropagation(); // prevent triggering navigation
+                        toggleLike(movie.id);
+                      }}
+                      onMouseEnter={(e) => {
+                        const img = e.currentTarget.querySelector('img');
+                        if (!likedMovies.includes(movie.id)) img.src = heartHover;
+                      }}
+                      onMouseLeave={(e) => {
+                        const img = e.currentTarget.querySelector('img');
+                        if (!likedMovies.includes(movie.id)) img.src = heartIdle;
+                      }}
+                    >
+                      <img
+                        src={likedMovies.includes(movie.id) ? heartLiked : heartIdle}
+                        alt="heart-icon"
+                        width="24px"
+                      />
+                    </div>
+
+                  </div>
+                  <p className="text-[12px] text-white opacity-[0.4] mb-[10px]">
                     {movie.genres?.join(', ')}
                   </p>
-                  <p className="text-sm text-gray-400 mb-1">
-                    {movie.year} • {movie.country}
-                  </p>
-                </div>
-                <div className="mt-2 text-yellow-400 font-bold">
-                  ⭐ {movie.imdb_rating}
+                  <div className="flex gap-[12px] items-center text-[18px] text-white opacity-[0.8]">
+                    {movie.year}
+                    <div className='bg-[#222C4F] w-[6px] h-[6px] rounded-full'></div>
+                    {movie.country}
+                    <div className='bg-[#222C4F] w-[6px] h-[6px] rounded-full'></div>
+                    <div className='flex items-center gap-[6px]'>
+                      <img src={starPath} alt="star-icon" width="14px" />
+                      {movie.imdb_rating}
+                    </div>
+                  </div>
                 </div>
               </div>
             </li>
