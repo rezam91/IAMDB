@@ -65,7 +65,27 @@ const Result = () => {
 
   return (
     <>  
-      <div onClick={() => navigate(-1)} className='p-[10px] w-fit bg-[#222C4F] rounded-full cursor-pointer'>
+      {/* <img src={movie.images} alt={movie.images} width="1280px" className='absolute mt-[-50px] mx-[-180px] z-[-1]' /> */}
+      <div className="absolute w-[1280px] h-[380px] top-0 mt-[-50px] mx-[-180px] overflow-hidden z-[-1]">
+        {/* Background image */}
+        <img
+          src={movie.images}
+          alt={movie.images}
+          className="absolute top-0 left-0 w-full h-full object-cover z-[-2]"
+        />
+        {/* <div className="z-[-1] absolute w-full h-[380px] bg-gradient-to-b from-[#070D23]/0 via-[#070D23]/70 via-[#070D23]/90 to-[#070D23]"></div> */}
+        <div
+          className="absolute z-[-2] w-full h-[380px]"
+          style={{
+            background: `linear-gradient(to bottom, 
+              rgba(7, 13, 35, 0) 0%, 
+              rgba(7, 13, 35, 0.7) 70%, 
+              rgba(7, 13, 35, 0.9) 90%, 
+              #070D23 100%)`
+          }}
+        ></div>
+      </div>
+      <div onClick={() => navigate(-1)} className='p-[10px] w-fit bg-[#222C4F] rounded-full cursor-pointer z-20'>
         <img src={backSignPath} alt="" width='20px' />
       </div>
       <div className="mt-[100px] flex gap-[70px] text-white">
@@ -177,10 +197,16 @@ const Result = () => {
                 <span className="w-32 font-[700] text-[16px] opacity-[0.8]">Language</span>
                 <span className='font-[400] text-[14px]'>{movie.language}</span>
               </li>
+              <li className="py-[12px] border-b border-[#222C4F] flex">
+                <span className="w-32 font-[700] text-[16px] opacity-[0.8]">Awards</span>
+                <span className='font-[400] text-[14px]'>{movie.awards}</span>
+              </li>
             </ul>
           </div>
         </div>
       </div>
+
+
     </>
   );
 };
