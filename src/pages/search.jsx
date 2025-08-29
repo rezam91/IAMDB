@@ -113,7 +113,7 @@ const Search = () => {
       ) : movies.length === 0 ? (
         <div className="text-white text-center text-lg font-semibold">No Result Found!</div>
       ) : (
-        <ul className="flex flex-col gap-[20px] list-none pl-0">
+        <ul className="flex flex-col gap-[20px] list-none pl-0 search-ul">
           {movies.map((movie) => (
             <li
               key={movie.id}
@@ -123,12 +123,12 @@ const Search = () => {
               <img
                 src={movie.poster}
                 alt={movie.title}
-                className="w-[137px] h-[137px] object-cover rounded-[18px]"
+                className="w-[137px] h-[137px] object-cover rounded-[18px] search-movie-image"
               />
               <div className="flex flex-col justify-between flex-1">
                 <div>
                   <div className='flex justify-between'>
-                    <h3 className="text-[28px] font-[700] mt-[10px] mb-0">{movie.title}</h3>
+                    <h3 className="text-[28px] font-[700] mt-[10px] mb-0 search-movie-title">{movie.title}</h3>
                     <div
                       className="relative w-[24px] h-[24px] cursor-pointer"
                       onClick={(e) => {
@@ -152,10 +152,10 @@ const Search = () => {
                     </div>
 
                   </div>
-                  <p className="text-[12px] text-white opacity-[0.4] mb-[10px]">
+                  <p className="text-[12px] text-white opacity-[0.4] mb-[10px] font-[300]">
                     {movie.genres?.join(', ')}
                   </p>
-                  <div className="flex gap-[12px] items-center text-[18px] text-white opacity-[0.8]">
+                  <div className="flex gap-[12px] flex-wrap items-center text-[18px] text-white opacity-[0.8]">
                     {movie.year}
                     <div className='bg-[#222C4F] w-[6px] h-[6px] rounded-full'></div>
                     {movie.country}

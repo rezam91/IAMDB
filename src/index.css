@@ -10,14 +10,23 @@ body {
 @media (width < 920px) {
   .home-title {
     font-size: 100px;
-    margin-top: 80px;
+    margin-top: 304px;
   }
   .container {
     padding: 32px 12px;
     width:430px ;
-    margin-top: 304px;
+    margin-top: 0;
   }
   .form-mobile {
     padding: 6px 8px;
+  }
+
+  .search-movie-title {
+    font-size: 24px;
+    margin-top: 0;
+  }
+  .search-movie-image {
+    width: 122px;
+    height: 122px;
   }
 }
