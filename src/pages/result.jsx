@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import backSignPath from '../assets/images/angle-left 1.png' 
 import heartIdle from '../assets/images/State=Idle.png'
 import heartHover from '../assets/images/State=Hover.png'
 import heartLiked from '../assets/images/State=Liked.png'
+import clockPath from '../assets/images/clock-two 1.png'
 import { useContext } from 'react';
 import { UserContext } from '../App';
 
@@ -10,6 +13,7 @@ const Result = () => {
   const { likedMovies, toggleLike } = useContext(UserContext);
   const [movie, setMovie] = useState(null);
   const location = useLocation();
+  const navigate = useNavigate();
   const params = new URLSearchParams(location.search);
   const id = params.get('id');
 
@@ -61,32 +65,36 @@ const Result = () => {
 
   return (
     <>  
-      <div className='text-white mb-[100px]'>Back</div>
-      <div className="flex gap-6 p-6 text-white">
+      <div onClick={() => navigate(-1)} className='p-[10px] w-fit bg-[#222C4F] rounded-full cursor-pointer'>
+        <img src={backSignPath} alt="" width='20px' />
+      </div>
+      <div className="mt-[100px] flex gap-[70px] text-white">
         <div>
           <img
             src={movie.poster}
             alt={movie.title}
-            className="w-[200px] h-[300px] object-cover rounded-lg"
+            className="rounded-[18px]"
           />
 
-          <div className='flex'>
+          <div className='flex items-center gap-[18px] mt-[30px]'>
             {/* Rating Circle */}
-            <div className="relative w-[80px] h-[80px] mt-6">
+            <div className="relative w-[80px] h-[80px]">
               <svg className="absolute top-0 left-0 w-full h-full">
+                {/* Empty background circle */}
                 <circle
                   cx="40"
                   cy="40"
                   r="35"
-                  stroke="#334155"
+                  stroke="#222C4F"
                   strokeWidth="6"
                   fill="none"
                 />
+                {/* Filled progress circle */}
                 <circle
                   cx="40"
                   cy="40"
                   r="35"
-                  stroke="#facc15"
+                  stroke="#724CF9"
                   strokeWidth="6"
                   fill="none"
                   strokeDasharray="220"
@@ -95,27 +103,28 @@ const Result = () => {
                   transform="rotate(-90 40 40)"
                 />
               </svg>
-              <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center text-yellow-400 font-bold text-xl">
+              {/* Rating text */}
+              <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center text-white font-[800] text-[24px]">
                 {movie.imdb_rating}
               </div>
             </div>
+
             <div className='flex flex-col'>
-              <span>{movie.imdb_votes}</span>
-              <span>ratings on IMDB</span>
+              <span className='text-[16px] font-[700] opacity-[0.8]'>{movie.imdb_votes}</span>
+              <span className='text-[14px] font-[400] opacity-[0.6]'>ratings on IMDB</span>
             </div>
           </div>
 
           {/* Ratings Output */}
-          <div className="mt-4 space-y-2 text-white text-lg font-semibold">
+          <div className="mt-[30px] text-[13px] font-[400] opacity-[0.4] leading-[24px]">
             {filteredRatings}
           </div>
         </div>
 
         <div className="flex flex-col justify-between">
           <div>
-            <div className='flex justify-between'>
-
-              <h1 className="text-3xl font-bold mb-2">{movie.title}</h1>
+            <div className='flex justify-between items-center'>
+              <h1 className="text-[48px] font-[700] mx-0 my-0">{movie.title}</h1>
               <div
                 className="relative w-[24px] h-[24px] cursor-pointer"
                 onClick={(e) => {
@@ -139,34 +148,34 @@ const Result = () => {
               </div>
 
             </div>
-            <p className="text-gray-300 mb-1">{movie.genres?.join(', ')}</p>
-            <p>{movie.plot}</p>
-            <div>
-              <span>{movie.rated}</span>
-              <span>{movie.year}</span>
-              <span>{movie.runtime}</span>
+            <p className="opacity-[0.4] mt-0 text-[12px] font-[300]">{movie.genres?.join(', ')}</p>
+            <p className='my-[18px] opacity-[0.6] leading-[24px] text-[14px] font-[400] text-justify'>{movie.plot}</p>
+            <div className='flex gap-[12px] font-[400] text-[12px]'>
+              <span className='px-[12px] py-[6px] rounded-[8px] bg-[#222C4F]'>{movie.rated}</span>
+              <span className='px-[12px] py-[6px] rounded-[8px] bg-[#222C4F]'>{movie.year}</span>
+              <span className='px-[12px] py-[6px] rounded-[8px] bg-[#222C4F] flex items-center gap-[6px]'><img src={clockPath} alt="clock" width="12px" />{movie.runtime}</span>
             </div>
-            <h2>Details</h2>
+            <h2 className='mt-[18px] text-[28px] font-[700] leading-[50px]'>Details</h2>
             <ul className="text-sm text-white space-y-2">
-              <li className="flex">
-                <span className="w-32 font-semibold text-gray-300">Directors</span>
-                <span>{movie.director}</span>
+              <li className="py-[12px] border-b border-[#222C4F] flex">
+                <span className="w-32 font-[700] text-[16px] opacity-[0.8]">Directors</span>
+                <span className='font-[400] text-[14px]'>{movie.director}</span>
               </li>
-              <li className="flex">
-                <span className="w-32 font-semibold text-gray-300">Writers</span>
-                <span>{movie.writer}</span>
+              <li className="py-[12px] border-b border-[#222C4F] flex">
+                <span className="w-32 font-[700] text-[16px] opacity-[0.8]">Writers</span>
+                <span className='font-[400] text-[14px]'>{movie.writer}</span>
               </li>
-              <li className="flex">
-                <span className="w-32 font-semibold text-gray-300">Actors</span>
-                <span>{movie.actors}</span>
+              <li className="py-[12px] border-b border-[#222C4F] flex">
+                <span className="w-32 font-[700] text-[16px] opacity-[0.8]">Actors</span>
+                <span className='font-[400] text-[14px]'>{movie.actors}</span>
               </li>
-              <li className="flex">
-                <span className="w-32 font-semibold text-gray-300">Country</span>
-                <span>{movie.country}</span>
+              <li className="py-[12px] border-b border-[#222C4F] flex">
+                <span className="w-32 font-[700] text-[16px] opacity-[0.8]">Country</span>
+                <span className='font-[400] text-[14px]'>{movie.country}</span>
               </li>
-              <li className="flex">
-                <span className="w-32 font-semibold text-gray-300">Language</span>
-                <span>{movie.language}</span>
+              <li className="py-[12px] border-b border-[#222C4F] flex">
+                <span className="w-32 font-[700] text-[16px] opacity-[0.8]">Language</span>
+                <span className='font-[400] text-[14px]'>{movie.language}</span>
               </li>
             </ul>
           </div>

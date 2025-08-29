@@ -28,7 +28,7 @@ const Home = () => {
 
   return (
     <>
-      <h1 className="text-white text-[140px] text-center font-black mt-[132px]">IAMDb</h1>
+      <h1 className="border border-white text-white text-[140px] text-center font-black mt-[132px]">IAMDb</h1>
       <form
         onSubmit={handleSearch}
         className="rounded-[16px] flex items-center bg-[#222C4F] px-4 py-2 gap-2 w-full opacity-80"
