@@ -93,7 +93,7 @@ const Search = () => {
           type="text"
           value={queryInput}
           onChange={(e) => setQueryInput(e.target.value)}
-          placeholder={query ? `${query}` : `${genre}`}
+          placeholder="Search movies..."
           className="bg-transparent text-white outline-none px-2 w-full"
         />
         <div className='border-l-[2px] border-black pl-[4px]'>
