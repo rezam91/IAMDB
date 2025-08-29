@@ -179,27 +179,27 @@ const Result = () => {
             <ul className="text-sm text-white space-y-2">
               <li className="py-[12px] border-b border-[#222C4F] flex">
                 <span className="w-32 font-[700] text-[16px] opacity-[0.8]">Directors</span>
-                <span className='font-[400] text-[14px]'>{movie.director}</span>
+                <span className='opacity-[0.7] font-[400] text-[14px]'>{movie.director}</span>
               </li>
               <li className="py-[12px] border-b border-[#222C4F] flex">
                 <span className="w-32 font-[700] text-[16px] opacity-[0.8]">Writers</span>
-                <span className='font-[400] text-[14px]'>{movie.writer}</span>
+                <span className='opacity-[0.7] font-[400] text-[14px]'>{movie.writer}</span>
               </li>
               <li className="py-[12px] border-b border-[#222C4F] flex">
                 <span className="w-32 font-[700] text-[16px] opacity-[0.8]">Actors</span>
-                <span className='font-[400] text-[14px]'>{movie.actors}</span>
+                <span className='opacity-[0.7] font-[400] text-[14px]'>{movie.actors}</span>
               </li>
               <li className="py-[12px] border-b border-[#222C4F] flex">
                 <span className="w-32 font-[700] text-[16px] opacity-[0.8]">Country</span>
-                <span className='font-[400] text-[14px]'>{movie.country}</span>
+                <span className='opacity-[0.7] font-[400] text-[14px]'>{movie.country}</span>
               </li>
               <li className="py-[12px] border-b border-[#222C4F] flex">
                 <span className="w-32 font-[700] text-[16px] opacity-[0.8]">Language</span>
-                <span className='font-[400] text-[14px]'>{movie.language}</span>
+                <span className='opacity-[0.7] font-[400] text-[14px]'>{movie.language}</span>
               </li>
               <li className="py-[12px] border-b border-[#222C4F] flex">
                 <span className="w-32 font-[700] text-[16px] opacity-[0.8]">Awards</span>
-                <span className='font-[400] text-[14px]'>{movie.awards}</span>
+                <span className='opacity-[0.7] font-[400] text-[14px]'>{movie.awards}</span>
               </li>
             </ul>
           </div>

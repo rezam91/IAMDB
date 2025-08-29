@@ -6,3 +6,18 @@ body {
 .roboto {
     font-family: 'roboto'
 }
+
+@media (width < 920px) {
+  .home-title {
+    font-size: 100px;
+    margin-top: 80px;
+  }
+  .container {
+    padding: 32px 12px;
+    width:430px ;
+    margin-top: 304px;
+  }
+  .form-mobile {
+    padding: 6px 8px;
+  }
+}

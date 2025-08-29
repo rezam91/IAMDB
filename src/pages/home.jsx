@@ -28,26 +28,28 @@ const Home = () => {
 
   return (
     <>
-      <h1 className="text-white text-[140px] text-center font-black mt-[132px]">IAMDb</h1>
+      <h1 className="text-white text-[140px] text-center font-black mt-[132px] home-title">
+        IAMDb
+      </h1>
+
       <form
         onSubmit={handleSearch}
-        className="rounded-[16px] flex items-center bg-[#222C4F] px-4 py-2 gap-2 w-full opacity-80"
+        className="rounded-[16px] flex items-center bg-[#222C4F] px-[16px] py-[12px] gap-[4px] w-full opacity-80 form-mobile"
       >
-        <img src={searchpath} alt="search-icon" width="24px" />
+        <img src={searchpath} alt="search-icon" />
         <input
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search movies..."
-          className="bg-[#222C4F] text-white outline-none px-2 w-full"
+          className="bg-[#222C4F] text-white outline-none px-[2px] w-full"
         />
-        <div className='border-l-[2px] border-black pl-[4px]'>
+        <div className="border-l-[2px] border-black pl-[4px]">
           <img
             src={voicetotext}
             alt="microphone-icon"
-            width="24px"
-            onClick={handleVoiceInput}
             className="cursor-pointer"
+            onClick={handleVoiceInput}
           />
         </div>
       </form>
