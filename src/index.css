@@ -1,1 +1,8 @@
 @import "tailwindcss";
+
+body {
+  font-family: 'Inter';
+}
+.roboto {
+    font-family: 'roboto'
+}
