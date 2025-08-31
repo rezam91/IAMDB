@@ -29,4 +29,45 @@ body {
     width: 122px;
     height: 122px;
   }
+
+  .poster-box{
+    width: 430px;
+    margin-left: -12px;
+    margin-right: -12px;
+
+  }
+  .poster {
+    object-fit:cover ;
+  }
+  .like-box {
+    display: none;
+  }
+  .description {
+    flex-direction:column-reverse;
+    gap: 18px;
+  }
+  .movie-art{
+    margin-top: 18px;
+  }
+  .detail-p{
+    display: none;
+  }
+  .movie-description {
+    display: none;
+  }
+  .rate-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .circle-box {
+    margin-top: 0;
+  }
+  .other-rating{
+    margin-top: 0;
+  }
+  .left-side {
+    display: flex;
+    flex-direction: column-reverse;
+  }
 }
