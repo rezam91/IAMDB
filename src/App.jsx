@@ -21,7 +21,7 @@ const App = () => {
   return (
     <UserContext.Provider value={{ likedMovies, toggleLike }}>
       <Head />
-      <div className="border border-white mt-[50px] mx-auto w-[920px] container">
+      <div className="mt-[50px] mb-[120px] mx-auto w-[920px] container">
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path="/search/:query/:page" element={<Search />} />
