@@ -9,6 +9,7 @@ import heartHover from '../assets/images/State=Hover.png'
 import heartLiked from '../assets/images/State=Liked.png'
 import { useContext } from 'react';
 import { UserContext } from '../App';
+import VoiceInput from '../components/voiceInput.jsx'
 
 
 
@@ -97,13 +98,7 @@ const Search = () => {
           className="bg-transparent text-white outline-none px-2 w-full"
         />
         <div className='border-l-[2px] border-black pl-[4px]'>
-          <img
-            src={voicetotext}
-            alt="microphone-icon"
-            width="24px"
-            onClick={handleVoiceInput}
-            className="cursor-pointer"
-          />
+          <VoiceInput setQuery={setQueryInput} />
         </div>
       </form>
 
