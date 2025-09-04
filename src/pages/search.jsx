@@ -2,15 +2,11 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import searchpath from '../assets/images/search 1.svg';
 import backSignPath from '../assets/images/angle-left 1.png' 
-import voicetotext from '../assets/images/microphone 1.svg';
 import starPath from '../assets/images/star 1.png'
-import heartIdle from '../assets/images/State=Idle.png'
-import heartHover from '../assets/images/State=Hover.png'
-import heartLiked from '../assets/images/State=Liked.png'
 import { useContext } from 'react';
 import { UserContext } from '../App';
 import VoiceInput from '../components/voiceInput.jsx'
-
+import LikeButton from '../components/likeButton.jsx';
 
 
 const Search = () => {
@@ -53,22 +49,6 @@ const Search = () => {
     if (queryInput.trim()) {
       navigate(`/search/${queryInput}/1`);
     }
-  };
-
-  const handleVoiceInput = () => {
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SpeechRecognition) {
-      alert('Speech recognition not supported');
-      return;
-    }
-
-    const recognition = new SpeechRecognition();
-    recognition.lang = 'en-US';
-    recognition.onresult = (event) => {
-      const transcript = event.results[0][0].transcript;
-      setQueryInput(transcript);
-    };
-    recognition.start();
   };
 
   return (
@@ -124,28 +104,7 @@ const Search = () => {
                 <div>
                   <div className='flex justify-between'>
                     <h3 className="text-[28px] font-[700] mt-[10px] mb-0 search-movie-title">{movie.title}</h3>
-                    <div
-                      className="relative w-[24px] h-[24px] cursor-pointer"
-                      onClick={(e) => {
-                        e.stopPropagation(); // prevent triggering navigation
-                        toggleLike(movie.id);
-                      }}
-                      onMouseEnter={(e) => {
-                        const img = e.currentTarget.querySelector('img');
-                        if (!likedMovies.includes(movie.id)) img.src = heartHover;
-                      }}
-                      onMouseLeave={(e) => {
-                        const img = e.currentTarget.querySelector('img');
-                        if (!likedMovies.includes(movie.id)) img.src = heartIdle;
-                      }}
-                    >
-                      <img
-                        src={likedMovies.includes(movie.id) ? heartLiked : heartIdle}
-                        alt="heart-icon"
-                        width="24px"
-                      />
-                    </div>
-
+                    <LikeButton movieId={movie.id} />
                   </div>
                   <p className="text-[12px] text-white opacity-[0.4] mb-[10px] font-[300]">
                     {movie.genres?.join(', ')}

@@ -74,4 +74,7 @@ body {
   .fav-button {
     display: block;
   }
+  .like-desktop {
+    display: none;
+  }
 }

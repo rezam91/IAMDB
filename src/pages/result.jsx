@@ -2,12 +2,10 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useParams, useNavigate } from 'react-router-dom';
 import backSignPath from '../assets/images/angle-left 1.png' 
-import heartIdle from '../assets/images/State=Idle.png'
-import heartHover from '../assets/images/State=Hover.png'
-import heartLiked from '../assets/images/State=Liked.png'
 import clockPath from '../assets/images/clock-two 1.png'
 import { useContext } from 'react';
 import { UserContext } from '../App';
+import LikeButton from '../components/likeButton.jsx';
 
 const Result = () => {
   const { likedMovies, toggleLike } = useContext(UserContext);
@@ -146,28 +144,9 @@ const Result = () => {
           <div>
             <div className='flex justify-between items-center'>
               <h1 className="text-[48px] font-[700] mx-0 my-0">{movie.title}</h1>
-              <div
-                className="relative w-[24px] h-[24px] cursor-pointer like-box"
-                onClick={(e) => {
-                  e.stopPropagation(); // prevent accidental navigation
-                  toggleLike(movie.id);
-                }}
-                onMouseEnter={(e) => {
-                  const img = e.currentTarget.querySelector('img');
-                  if (!likedMovies.includes(movie.id)) img.src = heartHover;
-                }}
-                onMouseLeave={(e) => {
-                  const img = e.currentTarget.querySelector('img');
-                  if (!likedMovies.includes(movie.id)) img.src = heartIdle;
-                }}
-              >
-                <img
-                  src={likedMovies.includes(movie.id) ? heartLiked : heartIdle}
-                  alt="heart-icon"
-                  width="24px"
-                />
+              <div className='like-desktop'>
+                <LikeButton movieId={movie.id} />
               </div>
-
             </div>
             <p className="opacity-[0.4] mt-0 text-[12px] font-[300]">{movie.genres?.join(', ')}</p>
             <p className='my-[18px] opacity-[0.6] leading-[24px] text-[14px] font-[400] text-justify'>{movie.plot}</p>
