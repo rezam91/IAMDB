@@ -60,6 +60,7 @@ body {
   }
   .movie-art{
     margin-top: 18px;
+    width: 100%;
   }
   .detail-p{
     display: none;

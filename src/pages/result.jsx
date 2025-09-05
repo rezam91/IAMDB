@@ -94,6 +94,7 @@ const Result = () => {
           <img
             src={movie.poster}
             alt={movie.title}
+            width="208px"
             className="rounded-[18px] movie-art"
           />
           <div className='rate-box'>
