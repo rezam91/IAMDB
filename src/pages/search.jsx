@@ -57,14 +57,14 @@ const Search = () => {
     <>
       {/* Search Bar */}
       <div className='relative flex'>
-        <div onClick={() => navigate(-1)} className='p-[10px] w-fit bg-[#222C4F] rounded-full cursor-pointer'>
+        <div onClick={() => navigate(-1)} className='p-[10px] w-fit bg-[#222C4F] rounded-full cursor-pointer hover:bg-[#1a223d]'>
           <img src={backSignPath} alt="back-sign" width='20px' />
         </div>
         <div className='text-white grow flex flex-col'>
           <span className='mx-auto p-0text-[18px] leading-[0.9] font-[700]'>Result</span>
           <span className='mx-auto opacity-[0.4] text-[12px] font-[300] '>for {query ? `"${query}"` : `"${genre}"`}</span>
         </div>
-        <div onClick={() => navigate('/')} className='p-[10px] bg-[#222C4F] rounded-full cursor-pointer'>
+        <div onClick={() => navigate('/')} className='p-[10px] bg-[#222C4F] rounded-full cursor-pointer hover:bg-[#1a223d]'>
           <img src={HomePath} alt="home-sign" width='20px' />
         </div>
       </div>
@@ -96,7 +96,7 @@ const Search = () => {
             <li
               key={movie.id}
               onClick={() => navigate(`/result?id=${movie.id}`)}
-              className="border-b border-[#222C4F] mb-[20px] flex pb-[20px] gap-[20px] text-white cursor-pointer rounded-[18px]"
+              className="border-b border-[#222C4F] mb-[20px] flex pb-[20px] gap-[20px] text-white cursor-pointer rounded-[18px] transition-transform duration-300 ease-in-out hover:scale-[1.02]"
             >
               <img
                 src={movie.poster}

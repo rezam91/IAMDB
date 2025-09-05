@@ -9,9 +9,9 @@ const MovieDetailsList = ({ movie }) => {
   ];
 
   return (
-    <ul className="text-sm text-white space-y-2 movie-description">
+    <ul className="text-white space-y-2 movie-description">
       {details.map((item, index) => (
-        <li key={index} className="py-[12px] border-b border-[#222C4F] flex">
+        <li key={index} className="py-[12px] border-b border-[#222C4F] flex transition-transform duration-300 ease-in-out hover:scale-105">
           <span className="w-32 font-[700] text-[16px] opacity-[0.8]">{item.label}</span>
           <span className="opacity-[0.7] font-[400] text-[14px]">{item.value}</span>
         </li>

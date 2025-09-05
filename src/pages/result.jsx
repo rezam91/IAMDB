@@ -88,10 +88,10 @@ const Result = () => {
         ></div>
       </div>
       <div className='flex justify-between'>
-        <div onClick={() => navigate(-1)} className='p-[10px] w-fit bg-[#222C4F] rounded-full cursor-pointer z-20'>
+        <div onClick={() => navigate(-1)} className='p-[10px] w-fit bg-[#222C4F] rounded-full cursor-pointer z-20 hover:bg-[#1a223d]'>
           <img src={backSignPath} alt="" width='20px' />
         </div>
-        <div onClick={() => navigate('/')} className='p-[10px] bg-[#222C4F] rounded-full cursor-pointer'>
+        <div onClick={() => navigate('/')} className='p-[10px] bg-[#222C4F] rounded-full cursor-pointer hover:bg-[#1a223d]'>
           <img src={HomePath} alt="home-sign" width='20px' />
         </div>
       </div>
