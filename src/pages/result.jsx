@@ -6,6 +6,7 @@ import clockPath from '../assets/images/clock-two 1.png'
 import { useContext } from 'react';
 import { UserContext } from '../App';
 import LikeButton from '../components/likeButton.jsx';
+import RatingCircle from '../components/ratingCircle.jsx';
 
 const Result = () => {
   const { likedMovies, toggleLike } = useContext(UserContext);
@@ -95,38 +96,7 @@ const Result = () => {
           />
           <div className='rate-box'>
             <div className='flex items-center gap-[18px] mt-[30px] circle-box'>
-              {/* Rating Circle */}
-              <div className="relative w-[80px] h-[80px]">
-                <svg className="absolute top-0 left-0 w-full h-full">
-                  {/* Empty background circle */}
-                  <circle
-                    cx="40"
-                    cy="40"
-                    r="35"
-                    stroke="#222C4F"
-                    strokeWidth="6"
-                    fill="none"
-                  />
-                  {/* Filled progress circle */}
-                  <circle
-                    cx="40"
-                    cy="40"
-                    r="35"
-                    stroke="#724CF9"
-                    strokeWidth="6"
-                    fill="none"
-                    strokeDasharray="220"
-                    strokeDashoffset={220 - (circleDegree / 360) * 220}
-                    strokeLinecap="round"
-                    transform="rotate(-90 40 40)"
-                  />
-                </svg>
-                {/* Rating text */}
-                <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center text-white font-[800] text-[24px]">
-                  {movie.imdb_rating}
-                </div>
-              </div>
-
+              <RatingCircle rating={movie.imdb_rating} />
               <div className='flex flex-col'>
                 <span className='text-[16px] font-[700] opacity-[0.8]'>{movie.imdb_votes}</span>
                 <span className='text-[14px] font-[400] opacity-[0.6]'>ratings on IMDB</span>
