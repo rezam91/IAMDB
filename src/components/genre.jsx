@@ -25,7 +25,7 @@ const Genre = () => {
         <li
           key={index}
           onClick={() => handleGenreClick(genre)}
-          className="bg-[#222C4F] px-[12px] py-[6px] rounded-[8px] cursor-pointer text-[12px] opacity-[0.8]"
+          className="bg-[#222C4F] px-[12px] py-[6px] rounded-[8px] cursor-pointer text-[12px] opacity-[0.8] transition-transform duration-300 ease-in-out hover:bg-[#1a223d] hover:scale-105"
         >
           {genre}
         </li>
@@ -33,7 +33,7 @@ const Genre = () => {
       {!showAll && (
         <li
           onClick={() => setShowAll(true)}
-          className="bg-[#222C4F] px-[12px] py-[6px] rounded-[8px] cursor-pointer text-[12px] opacity-[0.8]"
+          className="bg-[#222C4F] px-[12px] py-[6px] rounded-[8px] cursor-pointer text-[12px] opacity-[0.8] transition-transform duration-300 ease-in-out hover:bg-[#1a223d] hover:scale-105"
         >
           <div className='flex gap-[6px]'>Show More <img src={arrowSymbolPath} width='14px' alt="arrow" /></div>
         </li>
