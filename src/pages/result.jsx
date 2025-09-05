@@ -7,6 +7,7 @@ import { useContext } from 'react';
 import { UserContext } from '../App';
 import LikeButton from '../components/likeButton.jsx';
 import RatingCircle from '../components/ratingCircle.jsx';
+import LoadingSpinner from '../components/loading.jsx';
 
 const Result = () => {
   const { likedMovies, toggleLike } = useContext(UserContext);
@@ -30,7 +31,7 @@ const Result = () => {
     if (id) fetchMovie();
   }, [id]);
 
-  if (!movie) return <div className="text-white text-center mt-10">Loading...</div>;
+  if (!movie) return <LoadingSpinner />
 
   // Calculate rating circle fill
   const rating = parseFloat(movie.imdb_rating);
