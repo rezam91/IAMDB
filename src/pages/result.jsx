@@ -9,6 +9,7 @@ import LikeButton from '../components/likeButton.jsx';
 import RatingCircle from '../components/ratingCircle.jsx';
 import LoadingSpinner from '../components/loading.jsx';
 import MovieDetailsList from '../components/movieDetailList.jsx';
+import HomePath from '../assets/images/home.png'
 
 const Result = () => {
   const { likedMovies, toggleLike } = useContext(UserContext);
@@ -86,8 +87,13 @@ const Result = () => {
           }}
         ></div>
       </div>
-      <div onClick={() => navigate(-1)} className='p-[10px] w-fit bg-[#222C4F] rounded-full cursor-pointer z-20'>
-        <img src={backSignPath} alt="" width='20px' />
+      <div className='flex justify-between'>
+        <div onClick={() => navigate(-1)} className='p-[10px] w-fit bg-[#222C4F] rounded-full cursor-pointer z-20'>
+          <img src={backSignPath} alt="" width='20px' />
+        </div>
+        <div onClick={() => navigate('/')} className='p-[10px] bg-[#222C4F] rounded-full cursor-pointer'>
+          <img src={HomePath} alt="home-sign" width='20px' />
+        </div>
       </div>
       <div className="mt-[100px] flex gap-[70px] text-white description">
         <div className='left-side'>

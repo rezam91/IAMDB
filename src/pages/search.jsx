@@ -64,7 +64,7 @@ const Search = () => {
           <span className='mx-auto p-0text-[18px] leading-[0.9] font-[700]'>Result</span>
           <span className='mx-auto opacity-[0.4] text-[12px] font-[300] '>for {query ? `"${query}"` : `"${genre}"`}</span>
         </div>
-        <div className='p-[10px] bg-[#222C4F] rounded-full cursor-pointer'>
+        <div onClick={() => navigate('/')} className='p-[10px] bg-[#222C4F] rounded-full cursor-pointer'>
           <img src={HomePath} alt="home-sign" width='20px' />
         </div>
       </div>
