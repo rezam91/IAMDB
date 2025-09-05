@@ -4,6 +4,7 @@ import searchpath from '../assets/images/search 1.svg';
 import backSignPath from '../assets/images/angle-left 1.png' 
 import LoadingSpinner from '../components/loading.jsx';
 import starPath from '../assets/images/star 1.png'
+import HomePath from '../assets/images/home.png'
 import { useContext } from 'react';
 import { UserContext } from '../App';
 import VoiceInput from '../components/voiceInput.jsx'
@@ -57,13 +58,14 @@ const Search = () => {
       {/* Search Bar */}
       <div className='relative flex'>
         <div onClick={() => navigate(-1)} className='p-[10px] w-fit bg-[#222C4F] rounded-full cursor-pointer'>
-          <img src={backSignPath} alt="" width='20px' />
+          <img src={backSignPath} alt="back-sign" width='20px' />
         </div>
         <div className='text-white grow flex flex-col'>
           <span className='mx-auto p-0text-[18px] leading-[0.9] font-[700]'>Result</span>
           <span className='mx-auto opacity-[0.4] text-[12px] font-[300] '>for {query ? `"${query}"` : `"${genre}"`}</span>
         </div>
-        <div className='w-[40px] h-[40px]'>
+        <div className='p-[10px] bg-[#222C4F] rounded-full cursor-pointer'>
+          <img src={HomePath} alt="home-sign" width='20px' />
         </div>
       </div>
       <form
