@@ -82,6 +82,7 @@ body {
   .left-side {
     display: flex;
     flex-direction: column-reverse;
+    width: 100%;
   }
   .fav-button {
     display: block;

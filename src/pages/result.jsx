@@ -96,12 +96,11 @@ const Result = () => {
         </div>
       </div>
       <div className="mt-[100px] flex gap-[70px] text-white description">
-        <div className='left-side'>
+        <div className='left-side w-[208px] flex-shrink-0'>
           <img
             src={movie.poster}
             alt={movie.title}
-            width="208px"
-            className="rounded-[18px] movie-art"
+            className="w-[208px] h-auto rounded-[18px] object-cover movie-art"
           />
           <div className='rate-box'>
             <div className='flex items-center gap-[18px] mt-[30px] circle-box'>
