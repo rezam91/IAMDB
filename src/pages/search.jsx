@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import searchpath from '../assets/images/search 1.svg';
 import backSignPath from '../assets/images/angle-left 1.png' 
-import loadingPath from '../assets/images/time.png'
+import LoadingSpinner from '../components/loading.jsx';
 import starPath from '../assets/images/star 1.png'
 import { useContext } from 'react';
 import { UserContext } from '../App';
@@ -85,13 +85,7 @@ const Search = () => {
 
       {/* Loading or No Results */}
       {loading ? (
-        <div className="flex justify-center items-center mt-[40px]">
-          <img
-            src={loadingPath}
-            alt="Loading..."
-            className="w-[40px] h-[40px] animate-spin"
-          />
-        </div>
+        <LoadingSpinner />
       ) : movies.length === 0 ? (
         <div className="text-white text-center text-lg font-semibold">No Result Found!</div>
       ) : (
