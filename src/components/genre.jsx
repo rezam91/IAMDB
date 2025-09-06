@@ -30,7 +30,7 @@ const Genre = () => {
         </li>
       )}
     </ul>
-  );
-};
+  )
+}
 
 export default Genre
