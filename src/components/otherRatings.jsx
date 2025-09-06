@@ -14,9 +14,7 @@ const OtherRatings = ({ ratings }) => {
     )
   } catch (err) {
     return (
-      <div className="mt-[30px] text-[13px] font-[400] opacity-[0.4] leading-[24px] other-rating text-red-400">
-        Ratings unavailable
-      </div>
+      <div className="mt-[30px] text-[13px] font-[400] opacity-[0.4] leading-[24px] other-rating text-red-400">Ratings unavailable</div>
     )
   }
 }

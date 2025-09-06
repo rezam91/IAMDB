@@ -87,8 +87,7 @@ const Result = () => {
         </div>
       </div>
       <div className="fixed bottom-[12.5px] fav-button hidden w-[406px]">
-        <button
-          onClick={() => toggleLike(movie.id)}
+        <button onClick={() => toggleLike(movie.id)}
           className={`w-full px-[24px] py-[12px] text-white font-[400] rounded-[12px] transition-all duration-300 cursor-pointer ${
             likedMovies.includes(movie.id)
               ? 'bg-[#222C4F] hover:bg-[#1a223d]'
