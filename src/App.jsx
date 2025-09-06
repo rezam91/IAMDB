@@ -1,17 +1,15 @@
 import { Routes, Route } from "react-router-dom";
 import { createContext, useState } from "react";
-import Head from './components/head';
 import Home from './pages/home';
 import Search from './pages/search';
 import Result from './pages/result';
 import NotFound from './pages/notfound';
-
-// Create context
 export const UserContext = createContext();
 
 const App = () => {
   const [likedMovies, setLikedMovies] = useState([]);
 
+  //tabe taghire vaziate movie bar asase like
   const toggleLike = (id) => {
     setLikedMovies((prev) =>
       prev.includes(id) ? prev.filter((movieId) => movieId !== id) : [...prev, id]
@@ -20,7 +18,6 @@ const App = () => {
 
   return (
     <UserContext.Provider value={{ likedMovies, toggleLike }}>
-      <Head />
       <div className="mt-[50px] mb-[120px] mx-auto w-[920px] container">
         <Routes>
           <Route path='/' element={<Home />} />
