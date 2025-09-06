@@ -6,7 +6,7 @@ const MovieDetailsList = ({ movie }) => {
     { label: 'Country', value: movie.country },
     { label: 'Language', value: movie.language },
     { label: 'Awards', value: movie.awards },
-  ];
+  ]
 
   return (
     <ul className="text-white space-y-2 movie-description">
@@ -17,7 +17,7 @@ const MovieDetailsList = ({ movie }) => {
         </li>
       ))}
     </ul>
-  );
-};
+  )
+}
 
-export default MovieDetailsList;
+export default MovieDetailsList

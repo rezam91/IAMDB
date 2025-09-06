@@ -1,5 +1,5 @@
 const RatingCircle = ({ rating }) => {
-  const circleDegree = (parseFloat(rating) / 10) * 360;
+  const circleDegree = (parseFloat(rating) / 10) * 360
 
   return (
     <div className="relative w-[80px] h-[80px]">
@@ -32,7 +32,7 @@ const RatingCircle = ({ rating }) => {
         {rating}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default RatingCircle;
+export default RatingCircle

@@ -1,4 +1,4 @@
-import loadingPath from '../assets/images/time.png';
+import loadingPath from '../assets/images/time.png'
 
 const LoadingSpinner = () => {
   return (
@@ -12,4 +12,4 @@ const LoadingSpinner = () => {
   );
 };
 
-export default LoadingSpinner;
+export default LoadingSpinner

@@ -1,91 +1,44 @@
-import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
 import backSignPath from '../assets/images/angle-left 1.png' 
 import clockPath from '../assets/images/clock-two 1.png'
-import { useContext } from 'react';
-import { UserContext } from '../App';
-import LikeButton from '../components/likeButton.jsx';
-import RatingCircle from '../components/ratingCircle.jsx';
-import LoadingSpinner from '../components/loading.jsx';
-import MovieDetailsList from '../components/movieDetailList.jsx';
+import { useContext } from 'react'
+import { UserContext } from '../App'
+import LikeButton from '../components/likeButton.jsx'
+import RatingCircle from '../components/ratingCircle.jsx'
+import LoadingSpinner from '../components/loading.jsx'
+import MovieDetailsList from '../components/movieDetailList.jsx'
 import HomePath from '../assets/images/home.png'
+import OtherRatings from '../components/otherRatings.jsx'
 
 const Result = () => {
-  const { likedMovies, toggleLike } = useContext(UserContext);
-  const [movie, setMovie] = useState(null);
-  const location = useLocation();
-  const navigate = useNavigate();
-  const params = new URLSearchParams(location.search);
-  const id = params.get('id');
+  const { likedMovies, toggleLike } = useContext(UserContext)
+  const [movie, setMovie] = useState(null)
+  const navigate = useNavigate()
+  const {id} = useParams()
 
   useEffect(() => {
     const fetchMovie = async () => {
       try {
-        const res = await fetch(`https://moviesapi.codingfront.dev/api/v1/movies/${id}`);
-        const data = await res.json();
-        setMovie(data);
+        const res = await fetch(`https://moviesapi.codingfront.dev/api/v1/movies/${id}`)
+        const data = await res.json()
+        setMovie(data)
       } catch (err) {
-        console.error('Failed to fetch movie details:', err);
+        console.error('Failed to fetch movie details:', err)
       }
-    };
+    }
 
-    if (id) fetchMovie();
-  }, [id]);
+    if (id) fetchMovie()
+  }, [id])
 
   if (!movie) return <LoadingSpinner />
 
-  // Calculate rating circle fill
-  const rating = parseFloat(movie.imdb_rating);
-  const circleDegree = (rating / 10) * 360;
-
-  // Filter and format ratings
-  const filteredRatings = (() => {
-    try {
-      const ratings = JSON.parse(movie.ratings);
-      return ratings
-        .filter(rating =>
-          rating.Source === "Rotten Tomatoes" || rating.Source === "Metacritic"
-        )
-        .map((rating, index) => {
-          const source = rating.Source;
-          const value = rating.Value;
-
-          if (source === "Rotten Tomatoes") {
-            return <div key={index}>{value} on Rotten Tomatoes</div>;
-          }
-          if (source === "Metacritic") {
-            return <div key={index}>{value} on Metacritic</div>;
-          }
-
-          return null;
-        });
-    } catch (err) {
-      return <div className="text-red-400">Ratings unavailable</div>;
-    }
-  })();
-
   return (
     <>  
-      {/* <img src={movie.images} alt={movie.images} width="1280px" className='absolute mt-[-50px] mx-[-180px] z-[-1]' /> */}
       <div className="absolute w-[1280px] h-[380px] top-0 mx-[-180px] overflow-hidden z-[-1] poster-box">
         {/* Background image */}
-        <img
-          src={movie.images}
-          alt={movie.images}
-          className="absolute top-0 left-0 w-full h-full object-cover z-[-2] poster"
-        />
-        {/* <div className="z-[-1] absolute w-full h-[380px] bg-gradient-to-b from-[#070D23]/0 via-[#070D23]/70 via-[#070D23]/90 to-[#070D23]"></div> */}
-        <div
-          className="absolute z-[-2] w-full h-[380px]"
-          style={{
-            background: `linear-gradient(to bottom, 
-              rgba(7, 13, 35, 0) 0%, 
-              rgba(7, 13, 35, 0.7) 70%, 
-              rgba(7, 13, 35, 0.9) 90%, 
-              #070D23 100%)`
-          }}
-        ></div>
+        <img src={movie.images} alt={movie.images} className="absolute top-0 left-0 w-full h-full object-cover z-[-2] poster"/>
+        <div className="absolute z-[-2] w-full h-[380px]" style={{ background: `linear-gradient(to bottom,rgba(7, 13, 35, 0) 0%,rgba(7, 13, 35, 0.7) 70%,rgba(7, 13, 35, 0.9) 90%,#070D23 100%)`}}></div>
       </div>
       <div className='flex justify-between'>
         <div onClick={() => navigate(-1)} className='p-[10px] w-fit bg-[#222C4F] rounded-full cursor-pointer z-20 hover:bg-[#1a223d]'>
@@ -95,13 +48,10 @@ const Result = () => {
           <img src={HomePath} alt="home-sign" width='20px' />
         </div>
       </div>
+      {/* movie description */}
       <div className="mt-[100px] flex gap-[70px] text-white description">
         <div className='left-side w-[208px] flex-shrink-0'>
-          <img
-            src={movie.poster}
-            alt={movie.title}
-            className="w-[208px] h-auto rounded-[18px] object-cover movie-art"
-          />
+          <img src={movie.poster} alt={movie.title} className="w-[208px] h-auto rounded-[18px] object-cover movie-art"/>
           <div className='rate-box'>
             <div className='flex items-center gap-[18px] mt-[30px] circle-box'>
               <RatingCircle rating={movie.imdb_rating} />
@@ -111,10 +61,8 @@ const Result = () => {
               </div>
             </div>
 
-            {/* Ratings Output */}
-            <div className="mt-[30px] text-[13px] font-[400] opacity-[0.4] leading-[24px] other-rating">
-              {filteredRatings}
-            </div>
+            {/* other ratings */}
+            <OtherRatings ratings={movie.ratings} />
           </div>
         </div>
 
@@ -155,4 +103,4 @@ const Result = () => {
   );
 };
 
-export default Result;
+export default Result
