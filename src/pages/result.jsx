@@ -32,7 +32,9 @@ const Result = () => {
   }, [id])
 
   if (!movie) return <LoadingSpinner />
-
+  const handleGenreClick = (genre) => {
+    navigate(`/search/genre/${genre}/1`)
+  }
   return (
     <>  
       <div className="absolute w-[1280px] h-[380px] top-0 mx-[-180px] overflow-hidden z-[-1] poster-box">
@@ -74,7 +76,12 @@ const Result = () => {
                 <LikeButton movieId={movie.id} />
               </div>
             </div>
-            <p className="opacity-[0.4] mt-0 text-[12px] font-[300]">{movie.genres?.join(', ')}</p>
+            {/* <p className="opacity-[0.4] mt-0 text-[12px] font-[300]">{movie.genres?.join(', ')}</p> */}
+            <div className="flex flex-wrap gap-[6px] mb-[10px] text-[12px] text-white opacity-[0.4] font-[300]">
+              {movie.genres?.map((genre, index) => (
+                <span key={index} onClick={(e) => {handleGenreClick(genre)}} className="cursor-pointer hover:opacity-[0.7] transition-opacity hover:underline">{genre}</span>
+              ))}
+            </div>
             <p className='my-[18px] opacity-[0.6] leading-[24px] text-[14px] font-[400] text-justify'>{movie.plot}</p>
             <div className='flex gap-[12px] font-[400] text-[12px]'>
               <span className='px-[12px] py-[6px] rounded-[8px] bg-[#222C4F]'>{movie.rated}</span>

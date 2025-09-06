@@ -53,7 +53,10 @@ const Search = () => {
     if (queryInput.trim()) {
       navigate(`/search/${queryInput}/1`)
     }
-  };
+  }
+  const handleGenreClick = (genre) => {
+    navigate(`/search/genre/${genre}/1`)
+  }
 
   return (
     <>
@@ -94,9 +97,15 @@ const Search = () => {
                     <h3 className="text-[28px] font-[700] mt-[10px] mb-0 search-movie-title">{movie.title}</h3>
                     <LikeButton movieId={movie.id} />
                   </div>
-                  <p className="text-[12px] text-white opacity-[0.4] mb-[10px] font-[300]">
-                    {movie.genres?.join(', ')}
-                  </p>
+                  <div className="flex flex-wrap gap-[6px] mb-[10px] text-[12px] text-white opacity-[0.4] font-[300]">
+                    {movie.genres?.map((genre, index) => (
+                      <span key={index} onClick={(e) => {
+                        e.stopPropagation()
+                        handleGenreClick(genre)
+                      }}
+                        className="cursor-pointer hover:opacity-[0.7] transition-opacity hover:underline">{genre}</span>
+                    ))}
+                  </div>
                   <div className="flex gap-[12px] flex-wrap items-center text-[18px] text-white opacity-[0.8]">
                     {movie.year}
                     <div className='bg-[#222C4F] w-[6px] h-[6px] rounded-full'></div>
