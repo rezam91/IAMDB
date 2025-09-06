@@ -33,4 +33,4 @@ const Genre = () => {
   );
 };
 
-export default Genre;
+export default Genre

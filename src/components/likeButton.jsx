@@ -6,36 +6,21 @@ import { UserContext } from '../App'
 
 const LikeButton = ({ movieId }) => {
   const { likedMovies, toggleLike } = useContext(UserContext)
-
-  const handleMouseEnter = (e) => {
-    const img = e.currentTarget.querySelector('img')
-    if (!likedMovies.includes(movieId)) img.src = heartHover
-  }
-
-  const handleMouseLeave = (e) => {
-    const img = e.currentTarget.querySelector('img')
-    if (!likedMovies.includes(movieId)) img.src = heartIdle
-  }
+  const isLiked = likedMovies.includes(movieId)
 
   const handleClick = (e) => {
-    e.stopPropagation() // prevent navigation
+    e.stopPropagation()
     toggleLike(movieId)
   }
 
   return (
-    <div
-      className="relative w-[24px] h-[24px] cursor-pointer"
-      onClick={handleClick}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      <img
-        src={likedMovies.includes(movieId) ? heartLiked : heartIdle}
-        alt="heart-icon"
-        width="24px"
-      />
+    <div className={`relative w-[24px] h-[24px] cursor-pointer group`} onClick={handleClick}>
+      <img src={isLiked ? heartLiked : heartIdle} alt="heart-icon" width="24px" className={`${!isLiked ? 'group-hover:hidden' : ''}`}/>
+      {!isLiked && (
+        <img src={heartHover} alt="heart-hover" width="24px" className="absolute top-0 left-0 hidden group-hover:block"/>
+      )}
     </div>
-  );
-};
+  )
+}
 
 export default LikeButton
